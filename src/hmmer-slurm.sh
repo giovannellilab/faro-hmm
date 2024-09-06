@@ -8,4 +8,4 @@
 
 filename=$(basename $2)
 
-hmmsearch --cpu $SLURM_CPUS_PER_TASK --tblout "${filename}_hmmer.txt" $1 $2
+hmmsearch --cpu $SLURM_CPUS_PER_TASK --tblout "${filename}_hmmer.txt" $1 $2 > "${filename}_hmmer.out"
