@@ -31,6 +31,12 @@ find $INPUT_DIR/metabolic/ -name "*.hmm" -type f \
 find $INPUT_DIR/metascan/ -name "*.hmm" -type f \
     -exec hmmconvert {} \; > metascan${SUFFIX}
 
+# Barosa
+for folder in $(ls $INPUT_DIR/barosa/); do
+    find $INPUT_DIR/barosa/$folder/ -name "*.hmm" -type f \
+        -exec hmmconvert {} \; > barosa_${folder}${SUFFIX}
+done
+
 # ---------------------------------------------------------------------------- #
 # Concatenation and post-processing
 
