@@ -5,25 +5,31 @@ OUT_FILE=$INPUT_DIR/pipeline.hmm
 
 SUFFIX=".source.hmm"
 
-
 # ---------------------------------------------------------------------------- #
-# Addition of HMMs from each source
+# Processing of HMMs from each source
+
+# NOTE: before concatenating, hmmconvert must be run to update the profiles to
+# the version used. For details, see https://www.biostars.org/p/114774/#215668
 
 # Baker
-cat $INPUT_DIR/baker/Metabolic_genes_hmms/*.hmm > baker${SUFFIX}
-cat $INPUT_DIR/baker/Metabolic_genes_hmms/*.HMM >> baker${SUFFIX}
+find $INPUT_DIR/baker/Metabolic_genes_hmms/ -name "*.hmm" -type f \
+    -exec hmmconvert {} \; > baker${SUFFIX}
+find $INPUT_DIR/baker/Metabolic_genes_hmms/ -name "*.HMM" -type f \
+    -exec hmmconvert {} \; >> baker${SUFFIX}
 
 # MagicLamp
 for folder in $(ls $INPUT_DIR/magiclamp/); do
-    cat $INPUT_DIR/magiclamp/$folder/*.hmm > magiclamp_${folder}${SUFFIX}
+    find $INPUT_DIR/magiclamp/$folder/ -name "*.hmm" -type f \
+        -exec hmmconvert {} \; > magiclamp_${folder}${SUFFIX}
 done
 
 # METABOLIC
-cat $INPUT_DIR/metabolic/*.hmm > metabolic${SUFFIX}
+find $INPUT_DIR/metabolic/ -name "*.hmm" -type f \
+    -exec hmmconvert {} \; > metabolic${SUFFIX}
 
 # Metascan
-cat $INPUT_DIR/metascan/*.hmm > metascan${SUFFIX}
-
+find $INPUT_DIR/metascan/ -name "*.hmm" -type f \
+    -exec hmmconvert {} \; > metascan${SUFFIX}
 
 # ---------------------------------------------------------------------------- #
 # Concatenation and post-processing
