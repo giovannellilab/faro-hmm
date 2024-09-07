@@ -5,7 +5,7 @@ from io import StringIO
 import pandas as pd
 
 
-def get_hmm_hits(filepath: str, sep: str = "$") -> pd.DataFrame:
+def get_hits(filepath: str, sep: str = "$") -> pd.DataFrame:
 
     hmmer_colnames = [
         "target_name",
