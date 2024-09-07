@@ -32,8 +32,8 @@ def get_hits(filepath: str, sep: str = "$") -> pd.DataFrame:
     with open(filepath, mode="r") as handle:
         hits = handle.readlines()
 
-        # Remove first three lines
-        hits = hits[3:]
+        # Remove comment lines
+        hits = [line for line in hits if not line.startswith("#")]
 
         # Remove whitespaces in description of target column
         hits = [re.sub("#\\s.*\\sID", "ID", line) for line in hits]
