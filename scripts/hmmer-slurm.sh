@@ -10,7 +10,7 @@
 helpFunction()
 {
   echo ""
-  echo "Usage: $0 -d input_file -p hmm_file"
+  echo "Usage: $0 -i input_file -p hmm_file"
   echo -e "\t-i Genomes file"
   echo -e "\t-p HMM file"
   exit 1 # Exit script after printing help
