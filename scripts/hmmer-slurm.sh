@@ -34,9 +34,10 @@ fi
 
 # ---------------------------------------------------------------------------- #
 
+out_dir=$(dirname $input_file)
 filename=$(basename $input_file | cut -d. -f1)
 
 hmmsearch \
   --cpu $SLURM_CPUS_PER_TASK \
-  --tblout "${filename}_hmmer.txt" \
-  $hmm_file $input_file > "${filename}_hmmer.out"
+  --tblout "${out_dir}/${filename}_hmmer.txt" \
+  $hmm_file $input_file > "${out_dir}/${filename}_hmmer.out"
