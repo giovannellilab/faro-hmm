@@ -58,10 +58,8 @@ find metascan/ -name "*.hmm" -type f \
     -exec hmmconvert {} \; > metascan${suffix}
 
 # Barosa
-for folder in $(ls $input_dir/barosa/); do
-    find $input_dir/barosa/$folder/ -name "*.hmm" -type f \
-        -exec hmmconvert {} \; > barosa_${folder}${suffix}
-done
+find barosa/ -name "*.hmm" -type f \
+    -exec hmmconvert {} \; > barosa${suffix}
 
 # ---------------------------------------------------------------------------- #
 # Concatenation and post-processing
