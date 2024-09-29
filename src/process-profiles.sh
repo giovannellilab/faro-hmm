@@ -1,9 +1,35 @@
 #!/bin/bash
 
-INPUT_DIR="../data/profiles/"
-OUT_FILE=$INPUT_DIR/pipeline.hmm
+# Taken from https://unix.stackexchange.com/a/505342
+helpFunction()
+{
+  echo ""
+  echo "Usage: $0 -input_dir"
+  echo -e "\t-i Input directory containing the HMM folders for each source"
+  exit 1 # Exit script after printing help
+}
 
-SUFFIX=".source.hmm"
+while getopts "i:" opt
+do
+  case "$opt" in
+    i ) input_dir="$OPTARG" ;;
+    ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
+  esac
+done
+
+# Print helpFunction in case parameters are empty
+if [ -z "$input_dir" ]
+then
+  echo "Some or all of the parameters are empty";
+  helpFunction
+fi
+
+# ---------------------------------------------------------------------------- #
+
+cd $input_dir
+
+out_file=pipeline.hmm
+suffix=".source.hmm"
 
 # ---------------------------------------------------------------------------- #
 # Processing of HMMs from each source
@@ -12,40 +38,40 @@ SUFFIX=".source.hmm"
 # the version used. For details, see https://www.biostars.org/p/114774/#215668
 
 # Baker
-find $INPUT_DIR/baker/Metabolic_genes_hmms/ -name "*.hmm" -type f \
-    -exec hmmconvert {} \; > baker${SUFFIX}
-find $INPUT_DIR/baker/Metabolic_genes_hmms/ -name "*.HMM" -type f \
-    -exec hmmconvert {} \; >> baker${SUFFIX}
+find baker/Metabolic_genes_hmms/ -name "*.hmm" -type f \
+    -exec hmmconvert {} \; > baker${suffix}
+find baker/Metabolic_genes_hmms/ -name "*.HMM" -type f \
+    -exec hmmconvert {} \; >> baker${suffix}
 
 # MagicLamp
-for folder in $(ls $INPUT_DIR/magiclamp/); do
-    find $INPUT_DIR/magiclamp/$folder/ -name "*.hmm" -type f \
-        -exec hmmconvert {} \; > magiclamp_${folder}${SUFFIX}
+for folder in $(ls magiclamp/); do
+    find magiclamp/$folder/ -name "*.hmm" -type f \
+        -exec hmmconvert {} \; > magiclamp_${folder}${suffix}
 done
 
 # METABOLIC
-find $INPUT_DIR/metabolic/ -name "*.hmm" -type f \
-    -exec hmmconvert {} \; > metabolic${SUFFIX}
+find metabolic/ -name "*.hmm" -type f \
+    -exec hmmconvert {} \; > metabolic${suffix}
 
 # Metascan
-find $INPUT_DIR/metascan/ -name "*.hmm" -type f \
-    -exec hmmconvert {} \; > metascan${SUFFIX}
+find metascan/ -name "*.hmm" -type f \
+    -exec hmmconvert {} \; > metascan${suffix}
 
 # Barosa
-for folder in $(ls $INPUT_DIR/barosa/); do
-    find $INPUT_DIR/barosa/$folder/ -name "*.hmm" -type f \
-        -exec hmmconvert {} \; > barosa_${folder}${SUFFIX}
+for folder in $(ls $input_dir/barosa/); do
+    find $input_dir/barosa/$folder/ -name "*.hmm" -type f \
+        -exec hmmconvert {} \; > barosa_${folder}${suffix}
 done
 
 # ---------------------------------------------------------------------------- #
 # Concatenation and post-processing
 
 # Add source as prefix and concatenate to final file
-find *${SUFFIX} -type f -exec sed "s/NAME  /NAME  {}_/g" {} \; > $OUT_FILE
+find *${suffix} -type f -exec sed "s/NAME  /NAME  {}_/g" {} \; > $out_file
 
 # Remove source suffix
-SUFFIX_ESC=$(echo $SUFFIX | sed "s/\./\\\./g")
-sed -i "" "s/$(echo $SUFFIX_ESC)_/_/g" $OUT_FILE
+suffix_esc=$(echo $suffix | sed "s/\./\\\./g")
+sed -i "" "s/$(echo $suffix_esc)_/_/g" $out_file
 
 # Cleanup
-rm *${SUFFIX}
+rm *${suffix}
