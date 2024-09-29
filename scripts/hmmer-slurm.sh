@@ -6,6 +6,37 @@
 #SBATCH --mem=400G
 #SBATCH --partition=parallel
 
-filename=$(basename $2)
+# Taken from https://unix.stackexchange.com/a/505342
+helpFunction()
+{
+  echo ""
+  echo "Usage: $0 -d input_file -p hmm_file"
+  echo -e "\t-i Genomes file"
+  echo -e "\t-p HMM file"
+  exit 1 # Exit script after printing help
+}
 
-hmmsearch --cpu $SLURM_CPUS_PER_TASK --tblout "${filename}_hmmer.txt" $1 $2 > "${filename}_hmmer.out"
+while getopts "i:p:" opt
+do
+  case "$opt" in
+    i ) input_file="$OPTARG" ;;
+    p ) hmm_file="$OPTARG" ;;
+    ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
+  esac
+done
+
+# Print helpFunction in case parameters are empty
+if [ -z "$input_file" ] || [ -z "$hmm_file" ]
+then
+  echo "Some or all of the parameters are empty";
+  helpFunction
+fi
+
+# ---------------------------------------------------------------------------- #
+
+filename=$(basename $input_file)
+
+hmmsearch \
+  --cpu $SLURM_CPUS_PER_TASK \
+  --tblout "${filename}_hmmer.txt" \
+  $hmm_file $input_file > "${filename}_hmmer.out"
