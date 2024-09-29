@@ -1,13 +1,37 @@
 #!/bin/bash
 
-INPUT_DIR="../data/genomes/HighQ_Aquificota_Sequences_AA/"
+# Taken from https://unix.stackexchange.com/a/505342
+helpFunction()
+{
+  echo ""
+  echo "Usage: $0 -input_dir"
+  echo -e "\t-i Input directory containing the HMM folders for each source"
+  exit 1 # Exit script after printing help
+}
+
+while getopts "i:" opt
+do
+  case "$opt" in
+    i ) input_dir="$OPTARG" ;;
+    ? ) helpFunction ;; # Print helpFunction in case parameter is non-existent
+  esac
+done
+
+# Print helpFunction in case parameters are empty
+if [ -z "$input_dir" ]
+then
+  echo "Some or all of the parameters are empty";
+  helpFunction
+fi
+
+# ---------------------------------------------------------------------------- #
 
 # WARNING: change extension to avoid infinite loop (any .fa is listed by find)
 # Otherwise, change final output directory
-OUT_FILE=$(dirname $INPUT_DIR)/$(basename $INPUT_DIR).fa
+out_file=$(dirname $input_dir)/$(basename $input_dir).fa
 
 # Add filename after ">"
-find $INPUT_DIR -name "*.fa" -type f -execdir sed "s|\>|\>{}_|g" {} \; > $OUT_FILE
+find $input_dir -name "*.fa" -type f -execdir sed "s|\>|\>{}_|g" {} \; > $out_file
 
 # Remove extension
-sed -i "" "s|\.fa||g" $OUT_FILE
+sed -i "" "s|\.fa||g" $out_file
