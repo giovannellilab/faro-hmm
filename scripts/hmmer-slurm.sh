@@ -34,7 +34,7 @@ fi
 
 # ---------------------------------------------------------------------------- #
 
-filename=$(basename $input_file)
+filename=$(basename $input_file | cut -d. -f1)
 
 hmmsearch \
   --cpu $SLURM_CPUS_PER_TASK \
