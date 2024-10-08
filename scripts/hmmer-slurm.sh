@@ -1,8 +1,6 @@
 #!/bin/bash
 
-
 cpu_nrs=12
-mem=8G
 
 # Taken from https://unix.stackexchange.com/a/505342
 helpFunction()
