@@ -33,7 +33,7 @@ def get_itol_template(
         index=False
     )
     data_lines = [
-        line.strip().replace(" ", ",")
+        line.strip().replace("  ", ",")
         for line in data_lines.split("\n")
     ]
     data_lines = "\n".join(data_lines)
