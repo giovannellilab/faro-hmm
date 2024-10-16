@@ -1,6 +1,10 @@
 #!/bin/bash
 
-cpu_nrs=12
+#SBATCH --job-name="hmmer"
+#SBATCH --time=160:00:00
+#SBATCH --cpus-per-task=80
+#SBATCH --mem=400G
+#SBATCH --partition=parallel
 
 # Taken from https://unix.stackexchange.com/a/505342
 helpFunction()
@@ -34,6 +38,6 @@ out_dir=$(dirname $input_file)
 filename=$(basename $input_file | cut -d. -f1)
 
 hmmsearch \
-  --cpu $cpu_nrs \
+  --cpu $SLURM_CPUS_PER_TASK \
   --tblout "${out_dir}/${filename}_hmmer.txt" \
   $hmm_file $input_file > "${out_dir}/${filename}_hmmer.out"
