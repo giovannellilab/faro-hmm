@@ -12,5 +12,5 @@ conda activate pipeline-hmm
 conda install conda-forge::mafft clipkit iqtree hmmer ncbi-genome-download -y
 
 # Data processing and visualization dependencies
-conda install pandas plotly seaborn fastcluster -y
+conda install pandas xlrd plotly seaborn fastcluster -y
 ```
