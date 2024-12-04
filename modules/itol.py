@@ -64,7 +64,7 @@ def get_itol_template(
             df_unique["shape"].unique()[0]
         )\
         .replace(
-            "$$$ADD_DATA_HERE$$$",
+            "$$$DATA_LINES$$$",
             data_lines
         )
 
