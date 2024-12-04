@@ -1,0 +1,72 @@
+field,color
+Ag,#2E83AD
+Al,#66C2A5
+As,#ABD9E9
+Ba,#E6F598
+Ba,#FFFFBF
+Be,#FEE08B
+Cd,#FDAE61
+Cd,#F46D43
+Ce,#D53E4F
+Co,#9E0142
+Cr,#8E0152
+Cs,#C51B7D
+Cu,#DE77AE
+Dy,#F1B6DA
+Er,#FDE0EF
+Eu,#e08214
+Fe,#e69500
+Ga,#D9F0D3
+Gd,#A6DBA0
+Ho,#5AAE61
+La,#1B7837
+Mn,#00441B
+Mo,#4D9221
+Nb,#7CB85C
+Nd,#A6D96A
+Ni,#D9EF8B
+Pb,#FFFFCC
+Pr,#FDAE61
+Rb,#F46D43
+Re,#D73027
+S,#05313d
+Se,#A50026
+Sm,#67001F
+Sr,#EF8A62
+Ta,#F7F7F7
+Th,#67A9CF
+Ti,#D0E1F0
+Tl,#FFFFB3
+Tm,#F0F0F0
+U,#B3DE69
+V,#8DD3C7
+W,#80B1D3
+Y,#5E4FA2
+Yb,#BEBADA
+Zn,#FDB462
+Zr,#FB8072
+C,#000000
+Arsenic metabolism,#ffe599
+Carbon fixation,#302a27
+Carbon monoxide oxidation,#ada192
+Methane oxidation,#d6d0c8
+Methanogenesis,#ddd8d5
+Hydrogen oxidation,#47894b
+Nitrogen fixation,#004953
+Anammox,#0a7e8c
+Nitrification,#367588
+Assimilatory nitrate reduction,#4a708b
+Denitrification,#36648b
+Dissimilatory nitrate reduction,#004953
+Oxygen radicals detoxification,#ca4c57
+Oxygen respiration,#e15121
+Oxygenic photosynthesis,#138a5a
+Thiosulfate oxidation ,#dbbe11
+Sulfite oxidation,#f8e389
+Elemental sulfur reduction,#fffa6a
+Assimilatory sulfate reduction,#feda84
+Dissimilatory sulfate reduction,#ff9b83
+Sulfite reduction,#f9dc52
+DMSO reduction,#e9c46a
+Elemental sulfur reduction,#fff0ab
+Thiosulfate reduction,#f2dac2
