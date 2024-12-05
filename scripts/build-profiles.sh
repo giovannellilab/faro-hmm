@@ -27,11 +27,14 @@ fi
 # ---------------------------------------------------------------------------- #
 
 # Get filename without extension
-output_file="${input_file%.*}"
-output_file=${output_file}_aln.fasta
+input_basename="${input_file%.*}"
+aln_file=${input_basename}_aln.fasta
+clp_file=${input_basename}_aln_clp.sto
 
 # Align sequences
-mafft --auto --anysymbol --thread -1 $input_file > $output_file
+mafft --auto --anysymbol --thread -1 $input_file > $aln_file
 
 # Trim alignment
-clipkit $output_file -m kpic-smart-gap
+clipkit $aln_file \
+  --mode kpic-smart-gap \
+  --output $clp_file
