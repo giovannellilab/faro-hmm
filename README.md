@@ -12,8 +12,8 @@ conda activate pipeline-hmm
 # Install ncbi-genome-download and dependencies
 conda install -c etetoolkit ete3 ete_toolchain ncbi-genome-download -y
 
-# Sequence-related dependencies (mafft and iqtree installed with ete3)
-conda install clipkit hmmer -y
+# Sequence-related dependencies
+conda install mafft clipkit hmmer -y
 
 # Data processing and visualization dependencies
 conda install pandas xlrd plotly seaborn fastcluster -y
