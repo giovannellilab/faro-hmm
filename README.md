@@ -5,16 +5,12 @@ Pipeline for generating HMM profiles and functionally annotating with them.
 ## Installation
 
 ```bash
-# NOTE: for Mac M1/M2 chips, use "CONDA_SUBDIR=osx-64 conda create"
 conda create -n pipeline-hmm -y
 conda activate pipeline-hmm
 
+# Install general dependencies
+conda install mafft clipkit hmmer pandas xlrd plotly seaborn fastcluster -y
+
 # Install ncbi-genome-download and dependencies
-conda install -c etetoolkit ete3 ete_toolchain ncbi-genome-download -y
-
-# Sequence-related dependencies
-conda install mafft clipkit hmmer -y
-
-# Data processing and visualization dependencies
-conda install pandas xlrd plotly seaborn fastcluster -y
+pip install ncbi-genome-download ete3 six
 ```
