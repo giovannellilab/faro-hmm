@@ -37,4 +37,5 @@ mafft --auto --anysymbol --thread -1 $input_file > $aln_file
 # Trim alignment
 clipkit $aln_file \
   --mode kpic-smart-gap \
-  --output $clp_file
+  --output $clp_file \
+  --output_file_format stockholm
