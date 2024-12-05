@@ -30,6 +30,8 @@ fi
 output_file="${input_file%.*}"
 output_file=${output_file}_aln.fasta
 
+# Align sequences
 mafft --auto --anysymbol --thread -1 $input_file > $output_file
 
-clipkit $output_file
+# Trim alignment
+clipkit $output_file -m kpic-smart-gap
