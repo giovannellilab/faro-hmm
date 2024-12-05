@@ -30,6 +30,7 @@ fi
 input_basename="${input_file%.*}"
 aln_file=${input_basename}_aln.fasta
 clp_file=${input_basename}_aln_clp.sto
+hmm_file=${input_basename}.hmm
 
 # Align sequences
 mafft --auto --anysymbol --thread -1 $input_file > $aln_file
@@ -39,3 +40,10 @@ clipkit $aln_file \
   --mode kpic-smart-gap \
   --output $clp_file \
   --output_file_format stockholm
+
+# Build the HMM profile
+hmmbuild \
+  -n $(basename $input_basename) \
+  -O ${clp_file}.hmmer \
+  $hmm_file \
+  $clp_file
