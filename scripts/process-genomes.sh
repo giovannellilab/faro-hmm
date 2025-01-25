@@ -5,7 +5,7 @@ helpFunction()
 {
   echo ""
   echo "Usage: $0 -input_dir"
-  echo -e "\t-i Input directory containing the HMM folders for each source"
+  echo -e "\t-i Input directory containing the .fa files for each accesion"
   exit 1 # Exit script after printing help
 }
 
