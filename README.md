@@ -12,6 +12,7 @@ conda activate pipeline-hmm
 conda install mafft clipkit hmmer -y
 conda install scikit-learn pandas xlrd openpyxl plotly seaborn fastcluster -y
 
-# Install ncbi-genome-download and dependencies
+# Install NCBI utilities
+conda install -c conda-forge ncbi-datasets-cli -y
 pip install ncbi-genome-download ete3 six
 ```
