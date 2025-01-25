@@ -36,4 +36,4 @@ filename=$(basename $input_file | cut -d. -f1)
 hmmsearch \
   --cpu $num_threads \
   --tblout "${out_dir}/${filename}_hmmer.txt" \
-  $hmm_file $input_file > "${out_dir}/${filename}_hmmer.out"
+  $hmm_file $input_file
