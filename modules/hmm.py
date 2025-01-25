@@ -43,6 +43,15 @@ def get_hits(filepath: str, sep: str = "$") -> pd.DataFrame:
         # Replace multiple whitespaces by separator
         hits = [re.sub("\\s+", sep, line) for line in hits]
 
+        # Manage potential whitespaces in description
+        hits = [
+            "$".join(
+                line.split(sep)[:len(hmmer_colnames) - 1] + \
+                ["_".join(line.split(sep)[len(hmmer_colnames) - 1:])]
+            )
+            for line in hits
+        ]
+
         # Remove trailing separator
         hits = [line.rstrip(sep) for line in hits]
 
