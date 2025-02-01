@@ -36,6 +36,10 @@ def get_itol_template(
         line.strip().replace("  ", ",")
         for line in data_lines.split("\n")
     ]
+    data_lines = [
+        line.replace(" ", ",")
+        for line in data_lines
+    ]
     data_lines = "\n".join(data_lines)
 
     with open(template_path, mode="r") as handle:
