@@ -40,7 +40,7 @@ for file in ${input_dir}/*/mags_prodigal/mag_*/orf_predicted.faa; do
 
   # Add header to predicted ORFs
   header=${project_name}_${sample_name}
-  cat $file | sed "s|\>|\>${header}_|g" >> $out_file
+  cat $file | sed "s/>/>${header}_/g" >> $out_file
 
 done
 

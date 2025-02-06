@@ -35,7 +35,7 @@ out_file=$(dirname $input_dir)/$(basename $input_dir).${file_ext}
 # Add filename after ">"
 find $input_dir \
   -name "*.${file_ext}" \
-  -type f -execdir sed "s|\>|\>{}_|g" {} \; > $out_file
+  -type f -execdir sed "s/>/>{}_/g" {} \; > $out_file
 
 # Remove extension
 sed -i "" "s|\.fa||g" $out_file
