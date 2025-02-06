@@ -29,7 +29,7 @@ fi
 project_name=$(basename $input_dir)
 
 # Initialize output file
-out_file=$(realpath ${input_dir}/${project_name}.faa)
+out_file=${input_dir}/${project_name}.faa
 cat /dev/null > $out_file
 
 for file in ${input_dir}/*/mags_prodigal/mag_*/orf_predicted.faa; do
