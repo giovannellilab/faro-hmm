@@ -38,4 +38,4 @@ find $input_dir \
   -type f -execdir sed "s/>/>{}_/g" {} \; > $out_file
 
 # Remove extension
-sed -i "" "s|\.fa||g" $out_file
+sed -i "" "s/\.fa//g" $out_file
