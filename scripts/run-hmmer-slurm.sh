@@ -3,7 +3,7 @@
 #SBATCH --job-name="hmmer"
 #SBATCH --time=160:00:00
 #SBATCH --cpus-per-task=80
-#SBATCH --mem=400G
+#SBATCH --mem=80G
 #SBATCH --partition=parallel
 
 # Taken from https://unix.stackexchange.com/a/505342
