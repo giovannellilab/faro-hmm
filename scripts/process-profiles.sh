@@ -69,7 +69,7 @@ find *${suffix} -type f -exec sed "s/NAME  /NAME  {}_/g" {} \; > $out_file
 
 # Remove source suffix
 suffix_esc=$(echo $suffix | sed "s/\./\\\./g")
-sed -i "" "s/$(echo $suffix_esc)_/_/g" $out_file
+sed -i"" "s/$(echo $suffix_esc)_/_/g" $out_file
 
 # Cleanup
 rm *${suffix}
