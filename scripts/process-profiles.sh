@@ -61,6 +61,10 @@ find metascan/ -name "*.hmm" -type f \
 find barosa/ -name "*.hmm" -type f \
     -exec hmmconvert {} \; > barosa${suffix}
 
+# KOfam
+find kofam/ -name "*.hmm" -type f \
+    -exec hmmconvert {} \; > kofam${suffix}
+
 # ---------------------------------------------------------------------------- #
 # Concatenation and post-processing
 
