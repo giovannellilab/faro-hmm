@@ -40,4 +40,6 @@ filename=$(basename $input_file | cut -d. -f1)
 hmmsearch \
   --cpu $SLURM_CPUS_PER_TASK \
   --tblout "${out_dir}/${filename}_hmmer.txt" \
+  -E 1e-5 \
+  --domE 1e-5 \
   $hmm_file $input_file > /dev/null 2>&1
