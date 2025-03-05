@@ -26,6 +26,10 @@ fi
 
 # ---------------------------------------------------------------------------- #
 
+# Input dir must be: $project_name/geomosaic
+project_name=$(dirname $(realpath $input_dir))
+project_name=$(basename $project_name)
+
 out_dir=${input_dir}/mags_orfs/
 mkdir -p $out_dir
 
@@ -40,8 +44,12 @@ for file in ${input_dir}/*/mags_prodigal/mag_*/orf_predicted.faa; do
 
   # Copy ORFs to a new file in the input directory
   out_file=${out_dir}/${sample_name}_${mag_id}.faa
-  cp $file $out_file
-  echo "[+] Copied ${out_file}"
+
+  # Add header to predicted ORFs
+  header=${project_name}_${sample_name}
+  cat $file | sed "s/>/>${header}_/g" >> $out_file
+
+  echo "[+] Processed ${out_file}"
 
 done
 

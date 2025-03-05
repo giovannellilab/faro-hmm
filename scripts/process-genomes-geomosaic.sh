@@ -26,7 +26,9 @@ fi
 
 # ---------------------------------------------------------------------------- #
 
-project_name=$(basename $input_dir)
+# Input dir must be: $project_name/geomosaic
+project_name=$(dirname $(realpath $input_dir))
+project_name=$(basename $project_name)
 
 # Initialize output file
 out_file=${input_dir}/${project_name}.faa
