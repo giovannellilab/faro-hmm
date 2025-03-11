@@ -12,7 +12,7 @@ import pandas as pd
 
 # python scripts/process_profiles_filter.py \
 #   -m data/runs/closing-circuit/gene-table-oxidoreductases.xlsx \
-#   -c data/genomes/carbon-fixation/ko_carbon_metab.csv \
+#   -c data/runs/carbon-fixation/ko_carbon_metab.csv \
 #   -p data/profiles/ \
 #   -o data/profiles/closing-circuit
 
