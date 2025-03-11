@@ -16,7 +16,11 @@ import pandas as pd
 #   -p data/profiles/ \
 #   -o data/profiles/closing-circuit
 
-# bash process-profiles.sh
+# find data/profiles/closing-circuit/ \
+#   -name "*.hmm" \
+#   -type f \
+#   -exec hmmconvert {} \; > \
+#   data/profiles/pipeline.hmm
 
 # ---------------------------------------------------------------------------- #
 
