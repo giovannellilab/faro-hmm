@@ -166,3 +166,4 @@ data/
 .DS_Store
 taxdump.tar.gz
 repos/
+private/
