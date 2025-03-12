@@ -29,6 +29,10 @@ def process_results(input_dir: str) -> pd.DataFrame:
         sample_df["sample_id"] = sample_id
         sample_df["exp_id"] = exp_id
 
+        # Remove prefix
+        sample_df["ko_id"] = sample_df["ko_id"]\
+            .str.replace("ko:", "")
+
         # Sort columns
         sample_df = sample_df[
             ["exp_id", "sample_id"] + \
