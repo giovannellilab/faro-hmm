@@ -33,6 +33,7 @@ project_name=$(basename $project_name)
 out_dir=${input_dir}/mags_orfs/
 mkdir -p $out_dir
 
+# Geomosaic parses protein_translations.faa into orf_predicted.faa
 for file in ${input_dir}/*/mags_prodigal/mag_*/orf_predicted.faa; do
 
   # Get MAG ID

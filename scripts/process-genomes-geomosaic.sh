@@ -34,6 +34,7 @@ project_name=$(basename $project_name)
 out_file=${input_dir}/${project_name}.faa
 cat /dev/null > $out_file
 
+# Geomosaic parses protein_translations.faa into orf_predicted.faa
 for file in ${input_dir}/*/mags_prodigal/mag_*/orf_predicted.faa; do
 
   # Move up three times to get sample name
