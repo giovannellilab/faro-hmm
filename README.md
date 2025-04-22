@@ -20,6 +20,6 @@ conda install mafft clipkit iqtree hmmer -y
 conda install scikit-learn pandas xlrd openpyxl plotly seaborn fastcluster -y
 
 # Install NCBI utilities
-conda install -c conda-forge ncbi-datasets-cli -y
+conda install -c conda-forge ncbi-datasets-cli sra-tools -y
 pip install ncbi-genome-download ete3 six
 ```
