@@ -2,7 +2,11 @@
 
 ![logo](https://github.com/guillecg/designs/blob/main/logos/faro.jpg)
 
-FARO-HMM (Functional Annotation of Reactions using Orthologs and Hidden Markov Models) is a tool for studying biogeochemical cycles in environmental assemblies and MAGs (metagenome-assembled genomes).
+Logo licensed under CC-BY-NC-SA (4.0).
+
+<br>
+
+**FARO-HMM (Functional Annotation of Reactions using Orthologs and Hidden Markov Models)** is a tool for studying biogeochemical cycles in environmental assemblies and MAGs (metagenome-assembled genomes).
 
 
 ## Installation
