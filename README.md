@@ -1,6 +1,9 @@
-# pipeline-hmm
+# FARO-HMM
 
-Pipeline for generating HMM profiles and functionally annotating with them.
+![logo](https://github.com/guillecg/designs/blob/main/logos/faro.jpg)
+
+FARO-HMM (Functional Annotation of Reactions using Orthologs and Hidden Markov Models) is a tool for studying biogeochemical cycles in environmental assemblies and MAGs (metagenome-assembled genomes).
+
 
 ## Installation
 
