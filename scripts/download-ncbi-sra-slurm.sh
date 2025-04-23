@@ -32,8 +32,6 @@ fi
 
 # ---------------------------------------------------------------------------- #
 
-echo "[+] Processing ${srr_id}"
-
 # WARNING: be careful with disk limit! Try to use the --disk-limit option
 fasterq-dump $srr_id \
   --force \
