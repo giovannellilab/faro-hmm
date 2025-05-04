@@ -14,4 +14,4 @@ def get_metal_plasticity_index(
     donor_metals: list[str],
     acceptor_metals: list[str]
 ) ->float:
-    return list(product(donor_metals, acceptor_metals))
+    return np.log10(len(set(product(donor_metals, acceptor_metals))))
