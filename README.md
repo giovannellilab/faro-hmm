@@ -12,14 +12,14 @@ Logo licensed under CC-BY-NC-SA (4.0).
 ## Installation
 
 ```bash
-conda create -n pipeline-hmm -y
-conda activate pipeline-hmm
-
-# Install general dependencies
-conda install mafft clipkit iqtree hmmer -y
-conda install scikit-learn pandas xlrd openpyxl plotly seaborn fastcluster -y
+conda create -n faro-hmm python -y
+conda activate faro-hmm
 
 # Install NCBI utilities
 conda install -c conda-forge ncbi-datasets-cli sra-tools -y
 pip install ncbi-genome-download ete3 six
+
+# Install general dependencies
+conda install mafft clipkit iqtree hmmer -y
+conda install scikit-learn pandas xlrd openpyxl plotly seaborn fastcluster -y
 ```
