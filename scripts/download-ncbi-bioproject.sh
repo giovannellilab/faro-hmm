@@ -4,7 +4,7 @@
 helpFunction()
 {
   echo ""
-  echo "Usage: $0 -d data_dir -s study_id -t num_threads"
+  echo "Usage: $0 -i bioproject_id -d data_dir"
   echo -e "\t-i NCBI BioProject ID"
   echo -e "\t-d Directory that will contain the data files"
   exit 1 # Exit script after printing help
