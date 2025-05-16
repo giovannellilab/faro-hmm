@@ -32,7 +32,7 @@ out_file=$(dirname $input_dir)/$(basename $input_dir).fa
 # Add filename after ">"
 find $input_dir \
   -name "*.faa" \
-  -type f -execdir sed "s/>/>{}_/g" {} \; > $out_file
+  -type f -execdir sed "s|>|>{}_|g" {} \; > $out_file
 
 # Remove extension
-sed -i"" "s/\.faa//g" $out_file
+sed -i"" "s|\.faa||g" $out_file
