@@ -22,4 +22,5 @@ pip install ncbi-genome-download ete3 six
 # Install general dependencies
 conda install mafft clipkit iqtree hmmer -y
 conda install scikit-learn pandas xlrd openpyxl plotly seaborn fastcluster -y
+conda install networkx -y
 ```
