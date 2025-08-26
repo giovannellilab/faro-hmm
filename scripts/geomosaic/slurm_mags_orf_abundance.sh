@@ -1,21 +1,21 @@
 #!/bin/bash
 
+# ---------------------------------------------------------------------------- #
+# WARNING:
+# 1) Define Geomosaic directory in the script, also for SLURM logs
+# 2) Change the number of array to the number of samples
+
+geomosaic_dir=""
+
+# ---------------------------------------------------------------------------- #
+
 #SBATCH --job-name="ABD"
 #SBATCH --time=96:00:00
 #SBATCH --cpus-per-task=10
 #SBATCH --mem=50G
-#SBATCH --array=1-2
-#SBATCH --output=$GEOMOSAIC_DIR/slurm_logs/slurm-%A_%a.out
+#SBATCH --array=1-TODO_CHANGE
+#SBATCH --output=$geomosaic_dir/slurm_logs/slurm-%A_%a.out
 #SBATCH --partition=parallel
-
-# ---------------------------------------------------------------------------- #
-# WARNING: define Geomosaic directory in the script, also for SLURM logs
-
-geomosaic_dir=""
-
-single_sample="$(tail -n +$SLURM_ARRAY_TASK_ID $geomosaic_dir/list_samples.txt | head -n1)"
-
-echo "SAMPLE: $single_sample"
 
 # ---------------------------------------------------------------------------- #
 # REQUIREMENTS:
@@ -23,6 +23,10 @@ echo "SAMPLE: $single_sample"
 #   * Read mapping output (read_mapping_sorted.bam): either bowtie2 or BBmap
 #   * ORF prediction output (genes.gff): Prodigal
 # ---------------------------------------------------------------------------- #
+
+single_sample="$(tail -n +$SLURM_ARRAY_TASK_ID $geomosaic_dir/list_samples.txt | head -n1)"
+
+echo "SAMPLE: $single_sample"
 
 # Define paths
 sample_dir=$geomosaic_dir/geomosaic/$single_sample
