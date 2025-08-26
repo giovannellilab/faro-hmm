@@ -38,8 +38,10 @@ mkdir -p $out_dir
 # ---------------------------------------------------------------------------- #
 # Get depth of coverage for each ORF in each MAG
 
-# Define header and replace separator by tab
+# Define header (see https://www.ensembl.org/info/website/upload/gff.html)
 header="id,start,end,unnamed,score,strand,source,feature,frame,attr,depth,readcount,readcountsample"
+
+# Replace separator by tabs (default separator in GFF files)
 header=$(echo "${header}" | tr , \\t)
 
 for file in $sample_dir/mags_prodigal/mag_*/genes.gff; do
@@ -62,11 +64,11 @@ for file in $sample_dir/mags_prodigal/mag_*/genes.gff; do
     $sample_dir/bowtie2/read_mapping_sorted.bam \
     > $mag_dir/${mag_id}_orf_depth.tsv
 
-  # Add total number of reads sequenced per sample from FastQC output
+  # Add columnn for total number of reads sequenced per sample from FastQC
   total_reads=$(cat $sample_dir/fastqc_readscount/geomosaic_readscount.txt)
   sed -i"" -e "s/$/\t${total_reads}/" $mag_dir/${mag_id}_orf_depth.tsv
 
-  # Add GFF columns (https://www.ensembl.org/info/website/upload/gff.html)
+  # Add header
   sed -i"" -e "1s/^/${header}\n/" $mag_dir/${mag_id}_orf_depth.tsv
 
   echo "[+] Depth of coverage and read counts calculated for: ${mag_id}"
