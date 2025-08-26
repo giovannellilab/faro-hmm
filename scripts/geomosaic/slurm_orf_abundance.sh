@@ -30,14 +30,15 @@ echo "SAMPLE: $single_sample"
 
 # Define paths
 sample_dir=$geomosaic_dir/geomosaic/$single_sample
-readmap_dir=$sample_dir/bbmap
+orf_dir=$sample_dir/prodigal/
+readmap_dir=$sample_dir/bowtie2
 
 # Create output directory for each sample
-out_dir=$sample_dir/mags_orf_abundance/
+out_dir=$sample_dir/orf_abundance/
 mkdir -p $out_dir
 
 # ---------------------------------------------------------------------------- #
-# Get depth of coverage for each ORF in each MAG
+# Get depth of coverage for each ORF in each assembly
 
 # Define header (see https://www.ensembl.org/info/website/upload/gff.html)
 header="id,start,end,unnamed,score,strand,source,feature,frame,attr,depth,readcount,readcountsample"
@@ -45,40 +46,26 @@ header="id,start,end,unnamed,score,strand,source,feature,frame,attr,depth,readco
 # Replace separator by tabs (default separator in GFF files)
 header=$(echo "${header}" | tr , \\t)
 
-for file in $sample_dir/mags_prodigal/mag_*/genes.gff; do
+# Generate BED file for samtools bedcov
+gff2bed --do-not-sort < $orf_dir/genes.gff > $out_dir/genes.bed
 
-  # Create MAG folder in output directory
-  mag_id=$(basename $(dirname $file))
-  mag_dir=$out_dir/$mag_id
-  mkdir -p $mag_dir
+# Get depth of coverage (defaul) and read counts (-c flag) per ORF
+samtools bedcov \
+  -c \
+  $out_dir/genes.bed \
+  $readmap_dir/read_mapping_sorted.bam \
+  > $out_dir/orf_depth.tsv
 
-  # Generate BED file for samtools bedcov
-  gff2bed --do-not-sort < $file > $mag_dir/genes.bed
+# Add columnn for total number of reads sequenced per sample from FastQC
+total_reads=$(cat $sample_dir/fastqc_readscount/geomosaic_readscount.txt)
+sed -i"" -e "s/$/\t${total_reads}/" $out_dir/orf_depth.tsv
 
-  # Remove "mag_*_" from the BED file, since the BAM file contains contig IDs
-  sed -i"" -e "s/${mag_id}_//g" $mag_dir/genes.bed
-
-  # Get depth of coverage (defaul) and read counts (-c flag) per ORF
-  samtools bedcov \
-    -c \
-    $mag_dir/genes.bed \
-    $readmap_dir/read_mapping_sorted.bam \
-    > $mag_dir/${mag_id}_orf_depth.tsv
-
-  # Add columnn for total number of reads sequenced per sample from FastQC
-  total_reads=$(cat $sample_dir/fastqc_readscount/geomosaic_readscount.txt)
-  sed -i"" -e "s/$/\t${total_reads}/" $mag_dir/${mag_id}_orf_depth.tsv
-
-  # Add header
-  sed -i"" -e "1s/^/${header}\n/" $mag_dir/${mag_id}_orf_depth.tsv
-
-  echo "[+] Depth of coverage and read counts calculated for: ${mag_id}"
-
-done
+# Add header
+sed -i"" -e "1s/^/${header}\n/" $out_dir/orf_depth.tsv
 
 # ---------------------------------------------------------------------------- #
 # Combine all MAGs and normalize counts per sample
 
-python3 process_orf_abundance.py --input_dir $sample_dir --level mags
+python3 process_orf_abundance.py --input_dir $sample_dir --level assembly
 
-echo "[FINISHED] Depth of coverage and read counts calculated for all MAGs"
+echo "[FINISHED] Depth of coverage and read counts calculated for the assembly"
