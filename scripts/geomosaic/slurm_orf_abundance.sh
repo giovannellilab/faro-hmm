@@ -64,7 +64,7 @@ sed -i"" -e "s/$/\t${total_reads}/" $out_dir/orf_depth.tsv
 sed -i"" -e "1s/^/${header}\n/" $out_dir/orf_depth.tsv
 
 # ---------------------------------------------------------------------------- #
-# Combine all MAGs and normalize counts per sample
+# Normalize counts per sample
 
 python3 process_orf_abundance.py --input_dir $sample_dir --level assembly
 

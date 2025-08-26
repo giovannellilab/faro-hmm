@@ -77,7 +77,7 @@ for file in $sample_dir/mags_prodigal/mag_*/genes.gff; do
 done
 
 # ---------------------------------------------------------------------------- #
-# Combine all MAGs and normalize counts per sample
+# Normalize counts per sample
 
 python3 process_orf_abundance.py --input_dir $sample_dir --level mags
 
