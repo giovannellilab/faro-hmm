@@ -30,6 +30,7 @@ echo "SAMPLE: $single_sample"
 
 # Define paths
 sample_dir=$geomosaic_dir/geomosaic/$single_sample
+readmap_dir=$sample_dir/bbmap
 
 # Create output directory for each sample
 out_dir=$sample_dir/mags_orf_abundance/
@@ -61,7 +62,7 @@ for file in $sample_dir/mags_prodigal/mag_*/genes.gff; do
   samtools bedcov \
     -c \
     $mag_dir/genes.bed \
-    $sample_dir/bowtie2/read_mapping_sorted.bam \
+    $readmap_dir/read_mapping_sorted.bam \
     > $mag_dir/${mag_id}_orf_depth.tsv
 
   # Add columnn for total number of reads sequenced per sample from FastQC
